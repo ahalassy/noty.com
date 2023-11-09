@@ -25,7 +25,7 @@ public class TransactionMiddlewareTests {
 
         HttpServletRequest request = mock(HttpServletRequest.class);
         when(request.getHeader("Transaction")).thenReturn("tr-1");
-        when(request.getAttribute("serial")).thenReturn("sr-1");
+        when(request.getAttribute("noty.request-serial")).thenReturn("sr-1");
         when(request.getMethod()).thenReturn("POST");
 
         HttpServletResponse response = mock(HttpServletResponse.class);
@@ -59,7 +59,7 @@ public class TransactionMiddlewareTests {
 
         HttpServletRequest request = mock(HttpServletRequest.class);
         when(request.getHeader("Transaction")).thenReturn("tr-2");
-        when(request.getAttribute("serial")).thenReturn("sr-2");
+        when(request.getAttribute("noty.request-serial")).thenReturn("sr-2");
         when(request.getMethod()).thenReturn("POST");
 
         HttpServletResponse response = mock(HttpServletResponse.class);
@@ -92,7 +92,7 @@ public class TransactionMiddlewareTests {
 
         HttpServletRequest request = mock(HttpServletRequest.class);
         when(request.getHeader("Transaction")).thenReturn("tr-3");
-        when(request.getAttribute("serial")).thenReturn("sr-3");
+        when(request.getAttribute("noty.request-serial")).thenReturn("sr-3");
         when(request.getMethod()).thenReturn("GET");
 
         HttpServletResponse response = mock(HttpServletResponse.class);
@@ -152,7 +152,7 @@ public class TransactionMiddlewareTests {
         TransactionTracker tracker = mock(TransactionTracker.class);
 
         HttpServletRequest request = mock(HttpServletRequest.class);
-        when(request.getAttribute("serial")).thenReturn("sr-5");
+        when(request.getAttribute("noty.request-serial")).thenReturn("sr-5");
         when(request.getMethod()).thenReturn("POST");
 
         HttpServletResponse response = mock(HttpServletResponse.class);
