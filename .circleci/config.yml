@@ -68,13 +68,13 @@ jobs:
           at: .
       - run:
           name: "build image"
-          command: docker build -t noty:dbg --pull -f Dockerfile .
+          command: docker build -t $DOCKER_REPO --pull -f Dockerfile .
       - run:
           name: "dockerhub login"
           command: echo "$DOCKER_PAT" | docker login -u $DOCKER_USR --password-stdin
       - run:
           name: "push image"
-          command: docker image push --all-tags noty
+          command: docker image push --all-tags $DOCKER_REPO
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
