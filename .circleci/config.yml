@@ -55,7 +55,25 @@ jobs:
           root: .
           paths:
             - build
-    
+            
+  publish-image:
+    working_directory: ~/noty.com/src/com.noty.web
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - setup_remote_docker
+      - run:
+          name: "build image"
+          command: docker build -t noty:dbg --pull -f Dockerfile .
+      - run:
+          name: "dockerhub login"
+          command: echo "$DOCKER_PAT" | docker login --username $DOCKER_USR --password-stdin 
+      - run:
+          name: "push image"
+          command: docker image push --all-tags noty
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -70,6 +88,9 @@ workflows:
       - test:
           requires:
             - build
-        
+      - publish-image:
+          requires:
+            - test
+
       
       
