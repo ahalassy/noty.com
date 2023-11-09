@@ -24,9 +24,9 @@ jobs:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
-      - restore_cache:
+      - restore_cache_1:
           key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-      - restore_cache:
+      - restore_cache_2:
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
       - run:
           name: Install dependencies
