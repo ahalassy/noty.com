@@ -34,6 +34,7 @@ jobs:
           root: .
           paths:
             - build
+            - Dockerfile
             
   test:
     working_directory: ~/noty.com/src/com.noty.web
@@ -64,7 +65,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - setup_remote_docker
       - run:
           name: "build image"
           command: docker build -t noty:dbg --pull -f Dockerfile .
