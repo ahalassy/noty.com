@@ -1,9 +1,7 @@
 package com.noty.web.services.security;
 
-import com.noty.web.NotyAuthorizationException;
 import com.noty.web.NotyException;
 import com.noty.web.NotyForbiddenException;
-import com.noty.web.entities.NotyList;
 import com.noty.web.entities.User;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;

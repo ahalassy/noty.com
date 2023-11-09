@@ -18,7 +18,7 @@ public class TransactionTrackerImpl implements TransactionTracker {
 
     private final TransactionRepository repository;
     private final DateTime dateTime;
-    private final long TRANSACTION_TTL = 24 * 60 * 60 * 1000;
+    private static final long TRANSACTION_TTL = 24 * 60 * 60 * 1000;
 
     @Override
     public synchronized TrackingResult trackTransaction(String tokenSerial, String transactionSerial) {
