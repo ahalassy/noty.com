@@ -71,7 +71,7 @@ jobs:
           command: docker build -t noty:dbg --pull -f Dockerfile .
       - run:
           name: "dockerhub login"
-          command: echo "$DOCKER_PAT" | docker login --username $DOCKER_USR --password-stdin 
+          command: echo "$DOCKER_PAT" | docker login -u $DOCKER_USR — password-stdin
       - run:
           name: "push image"
           command: docker image push --all-tags noty
