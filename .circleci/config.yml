@@ -25,7 +25,8 @@ jobs:
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
-      - checkout: ~/noty.com
+      - checkout:
+          path: ~/noty.com
       - restore_cache:
           key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
