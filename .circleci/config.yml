@@ -106,11 +106,11 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      
+
   noty-workflow:
     jobs:
       - build-noty
-      - test:
+      - test-noty:
         requires:
           - build-noty
         
