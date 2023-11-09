@@ -18,7 +18,7 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
           
-  build-noty:
+  build:
     environment:
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     docker:
@@ -44,7 +44,7 @@ jobs:
           paths:
             - build
             
-  test-noty:
+  test:
     # Remove if parallelism is not desired
     parallelism: 2
     environment:
@@ -109,10 +109,10 @@ workflows:
 
   noty-workflow:
     jobs:
-      - build-noty
-      - test-noty:
-        requires:
-          - build-noty
+      - build
+      - test:
+          requires:
+            - build-noty
         
       
       
