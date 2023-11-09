@@ -44,7 +44,7 @@ jobs:
           paths:
             - build
             
-  test:
+  test-noty:
     # Remove if parallelism is not desired
     parallelism: 2
     environment:
@@ -112,7 +112,7 @@ workflows:
       - build-noty
       - test:
         requires:
-          - build
+          - build-noty
         
       
       
