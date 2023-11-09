@@ -36,14 +36,14 @@ jobs:
             - build
             
   test:
-    # Remove if parallelism is not desired
-    parallelism: 2
+    working_directory: ~/noty.com/src/com.noty.web
     environment:
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     docker:
       - image: cimg/openjdk:19.0.1    
     steps:
       - checkout
+          path: ~/noty.com
       - attach_workspace:
           at: .
       - run:
