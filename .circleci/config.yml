@@ -60,7 +60,7 @@ jobs:
   publish-image:
     working_directory: ~/noty.com/src/com.noty.web
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:24.0.7-git
     steps:
       - checkout
       - setup_remote_docker
