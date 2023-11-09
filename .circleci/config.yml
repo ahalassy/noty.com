@@ -19,11 +19,13 @@ jobs:
           command: "echo Hello, World!"
           
   build:
+    working_directory: ~/noty.com/src/com.noty.web
     environment:
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
+      - checkout: ~/noty.com
       - restore_cache:
           key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
