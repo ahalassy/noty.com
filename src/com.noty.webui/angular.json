@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/com.noty.webui",
+            "outputPath": "../com.noty.web/src/main/resources/static/ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "7e0ec5d3-d05c-4c8b-b33f-b9d38a1c32ff"
   }
 }

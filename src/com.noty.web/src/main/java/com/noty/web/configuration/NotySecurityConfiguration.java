@@ -39,8 +39,10 @@ public class NotySecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, POST_WHITE_LIST)
                         .permitAll()
-                        .anyRequest()
+                        .requestMatchers("/api/**")
                         .authenticated()
+                        .anyRequest()
+                        .permitAll()
                 )
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
