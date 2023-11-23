@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "com.noty.webui:build:production"
+              "buildTarget": "com.noty.webui:build:production"
             },
             "development": {
-              "browserTarget": "com.noty.webui:build:development"
+              "buildTarget": "com.noty.webui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "com.noty.webui:build"
+            "buildTarget": "com.noty.webui:build"
           }
         },
         "test": {
