@@ -24,7 +24,7 @@ public class ResourceUiContentResolver implements UiContentResolver {
         String resourcePath = RESOURCE_ROOT.concat(requestPath);
 
         ClassPathResource resource = new ClassPathResource(resourcePath);
-        if (!resource.isFile() && !isFallback)
+        if ((!resource.isFile() || !resource.isReadable()) && !isFallback)
             return resolvePath(FALLBACK_RESOURCE, true);
 
         URL url = resource.getURL();
