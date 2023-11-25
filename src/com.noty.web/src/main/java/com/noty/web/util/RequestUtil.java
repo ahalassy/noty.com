@@ -1,6 +1,8 @@
 package com.noty.web.util;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class RequestUtil {
 
@@ -13,4 +15,5 @@ public class RequestUtil {
     public static String getSerial(HttpServletRequest request) {
         return (String) request.getAttribute(REQUEST_SERIAL_KEY);
     }
+
 }
