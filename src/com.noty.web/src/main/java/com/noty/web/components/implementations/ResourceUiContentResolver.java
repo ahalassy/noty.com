@@ -33,7 +33,7 @@ public class ResourceUiContentResolver implements UiContentResolver {
             return null;
 
         Path filePath = Path.of(localPath, requestPath);
-        return Files.exists(filePath)
+        return Files.isRegularFile(filePath)
                 ? filePath
                 : null;
 
