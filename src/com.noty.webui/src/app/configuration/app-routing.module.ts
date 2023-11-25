@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from '../ui/pages/home/signin/signin.component';
 import { HomeComponent } from '../ui/pages/home/home.component';
 import { LandingComponent } from '../ui/pages/home/landing/landing.component';
+import { SignupComponent } from '../ui/pages/home/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/landing', pathMatch: 'full' },
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'landing', component: LandingComponent },
-      { path: 'signin', component: SigninComponent }
+      { path: 'signin', component: SigninComponent },
+      { path: 'signup', component: SignupComponent }
     ]
   },
 ];
