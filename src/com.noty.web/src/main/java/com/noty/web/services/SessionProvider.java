@@ -5,5 +5,5 @@ import com.noty.web.services.security.Credentials;
 
 public interface SessionProvider {
 
-    String authenticate(Credentials credentials) throws NotyAuthorizationException;
+    Principal authenticate(Credentials credentials) throws NotyAuthorizationException;
 }

@@ -2,6 +2,7 @@ package com.noty.web.components;
 
 
 import com.noty.web.entities.User;
+import com.noty.web.services.Principal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -43,10 +44,13 @@ public class JwtUtil {
         return result;
     }
 
-    public String encode(User user, Map<String, String> claims) {
+    public String encode(Principal principal) {
         Date now = dateTime.now();
         Date expires = new Date(now.getTime() + TOKEN_TTL);
         Key secretKey = new SecretKeySpec(secretAsKey(), "HmacSHA512");
+        Map<String, String> claims = principal.getClaims();
+        User user = principal.getUser();
+
         claims.put("serial", UUID.randomUUID().toString());
 
         return Jwts.builder()
