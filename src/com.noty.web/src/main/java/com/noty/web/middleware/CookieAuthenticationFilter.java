@@ -24,39 +24,12 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class CookieAuthenticationFilter extends AuthenticationFilterBase {
 
-    private static final Pattern pattern = Pattern.compile("-?\\d+");
-
-    private CookieSessionUtil cookieSessionUtil;
+    private final CookieSessionUtil cookieSessionUtil;
 
     @Override
-    protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
-        applyCookieAuthentication(request);
-
-        filterChain.doFilter(request, response);
+    protected Claims fetchClaims(HttpServletRequest request) {
+        return cookieSessionUtil.getSessionCookie(request);
     }
 
-    private void applyCookieAuthentication(HttpServletRequest request) {
-        Claims claims = cookieSessionUtil.getSessionCookie(request);
-        if (claims == null)
-            return;
 
-        String serial = claims.get("serial", String.class);
-        RequestUtil.setSerial(request, serial);
-
-        NotyImpersonation user = NotyImpersonation.fromClaims(claims);
-
-        WebAuthenticationDetails details = new WebAuthenticationDetailsSource()
-                .buildDetails(request);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                user,
-                null,
-                List.of(new SimpleGrantedAuthority("user"))
-        );
-        authentication.setDetails(details);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
 }
