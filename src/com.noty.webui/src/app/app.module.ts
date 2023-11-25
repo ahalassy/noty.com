@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './configuration/app-routing.module';
+import { UserProxyService } from './services/user-proxy.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { AppRoutingModule } from './configuration/app-routing.module';
     NgbModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UserProxyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

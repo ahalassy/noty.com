@@ -4,9 +4,12 @@ import { SigninComponent } from '../ui/pages/home/signin/signin.component';
 import { HomeComponent } from '../ui/pages/home/home.component';
 import { LandingComponent } from '../ui/pages/home/landing/landing.component';
 import { SignupComponent } from '../ui/pages/home/signup/signup.component';
+import { NotyappComponent } from '../ui/pages/app/notyapp.component';
+import { DashboardComponent } from '../ui/pages/app/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/landing', pathMatch: 'full' },
+  { path: 'app', redirectTo: 'app/dashboard', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
@@ -16,6 +19,13 @@ const routes: Routes = [
       { path: 'signup', component: SignupComponent }
     ]
   },
+  {
+    path: "app",
+    component: NotyappComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent }
+    ]
+  }
 ];
 
 @NgModule({

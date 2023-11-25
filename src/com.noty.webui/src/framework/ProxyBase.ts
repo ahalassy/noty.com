@@ -8,11 +8,9 @@
  * 
  *****************************************************************************/
 
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { catchError, firstValueFrom, throwError } from 'rxjs';
 
-@Injectable()
 export class ProxyBase {
 
     private baseUrl: string = "/api";

@@ -14,10 +14,10 @@ export class UserProxyService extends ProxyBase {
   }
 
   public signup(request: SignInRequest): Promise<SignUpResponse> {
-    return this.postAsync('user', request);
+    return this.postAsync('user', request, {});
   }
 
-  public singin(request: Sing) {
+  public singin(request: SignInRequest): Promise<void> {
     return this.postAsync('auth', request, { cookie: 'yes' });
   }
 }
