@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @AllArgsConstructor
-public class AuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Pattern pattern = Pattern.compile("-?\\d+");
 

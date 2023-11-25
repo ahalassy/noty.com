@@ -1,7 +1,7 @@
 package com.noty.web.configuration;
 
 import com.noty.web.components.JwtUtil;
-import com.noty.web.middleware.AuthenticationFilter;
+import com.noty.web.middleware.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,8 +28,8 @@ public class NotySecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationFilter authenticationTokenFilterBean() throws Exception {
-        return new AuthenticationFilter(jwtUtil);
+    public JwtAuthenticationFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtAuthenticationFilter(jwtUtil);
     }
 
     @Bean
