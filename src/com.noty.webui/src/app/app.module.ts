@@ -5,14 +5,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './configuration/app-routing.module';
 import { UserProxyService } from './services/user-proxy.service';
+import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './ui/pages/home/signup/signup.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [

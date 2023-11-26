@@ -1,12 +1,14 @@
-<form>
+<form (ngSubmit)="onSubmit()" #signupForm="ngForm">
     <h1 class="h3 mb-3 fw-normal">Sign up!</h1>
 
     <div class="form-floating mb-2">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            [(ngModel)]="model.email" name="email">
         <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+            [(ngModel)]="model.password"  name="password">
         <label for="floatingPassword">Choose Password</label>
     </div>
 
@@ -20,6 +22,6 @@
         <label class="form-check-label" for="acceptPrivacyPolicy">Do you accept or privacy policy?</label>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Go to your notes!</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signupForm.form.valid">Go to your notes!</button>
 </form>
 <h4 class="mt-5">Already have an account? <a routerLink="/home/signin">Sign in!</a></h4>

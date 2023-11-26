@@ -9,6 +9,6 @@
  *****************************************************************************/
 
 declare interface Credentials {
-    email: String;
-    password: String;
+    email: String | null;
+    password: String | null;
 }
