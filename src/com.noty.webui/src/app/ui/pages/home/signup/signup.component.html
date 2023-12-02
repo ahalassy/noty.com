@@ -1,27 +1,49 @@
-<form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+<form (ngSubmit)="onSubmit()" #signupForm="ngForm" [formGroup]="signUpForm">
     <h1 class="h3 mb-3 fw-normal">Sign up!</h1>
 
     <div class="form-floating mb-2">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-            [(ngModel)]="model.email" name="email">
-        <label for="floatingInput">Email</label>
+        <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com" name="email"
+            formControlName="email" [ngClass]="{ 'is-invalid': isInvalid('email') }">
+        <label for="signUpEmail">Email</label>
+        <div *ngIf="isInvalid('email')" class="invalid-feedback" for="signUpPassword">
+            <span *ngIf="email?.errors?.['required']">We'll identify you with your e-mail address.</span>
+            <span *ngIf="email?.errors?.['email']">Enter a valid e-mail address.</span>
+        </div>
     </div>
     <div class="form-floating mb-2">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-            [(ngModel)]="model.password"  name="password">
-        <label for="floatingPassword">Choose Password</label>
+        <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
+            formControlName="password" name="password" [ngClass]="{ 'is-invalid': isInvalid('password') }">
+        <label for="signUpPassword">Choose Password</label>
+        <div *ngIf="isInvalid('password')" class="invalid-feedback"
+            for="signUpPassword">
+            <span *ngIf="password?.errors?.['required']">Provide a password to secure your account.</span>
+            <span *ngIf="password?.errors?.['minLength']">Provide a more complex password.</span>
+        </div>
     </div>
 
     <div class="form-check form-switch mt-4">
-        <input class="form-check-input" type="checkbox" role="switch" id="acceptTermsAndConditions">
+        <input class="form-check-input" type="checkbox" role="switch" id="acceptTermsAndConditions"
+            formControlName="isTermsAndConditionsAccepted" [ngClass]="{ 'is-invalid': isInvalid('isTermsAndConditionsAccepted') }">
         <label class="form-check-label" for="acceptTermsAndConditions">Do you accept our terms and conditions?</label>
+        <div *ngIf="isInvalid('isTermsAndConditionsAccepted')"
+            class="invalid-feedback" for="acceptTermsAndConditions">
+            <span *ngIf="isTermsAndConditionsAccepted?.errors?.['required']">Please read and accept our terms and
+                conditions.</span>
+        </div>
     </div>
 
     <div class="form-check form-switch mb-4">
-        <input class="form-check-input" type="checkbox" role="switch" id="acceptPrivacyPolicy">
+        <input class="form-check-input" type="checkbox" role="switch" id="acceptPrivacyPolicy"
+            formControlName="isPrivacyPolicyAccepted" [ngClass]="{ 'is-invalid': isInvalid('isPrivacyPolicyAccepted') }">
         <label class="form-check-label" for="acceptPrivacyPolicy">Do you accept or privacy policy?</label>
+        <div *ngIf="isInvalid('isPrivacyPolicyAccepted')"
+            class="invalid-feedback" for="acceptTermsAndConditions">
+            <span *ngIf="isPrivacyPolicyAccepted?.errors?.['required']">Please read and accept our privacy
+                Policy.</span>
+        </div>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signupForm.form.valid">Go to your notes!</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signupForm.form.valid">Go to your
+        notes!</button>
 </form>
 <h4 class="mt-5">Already have an account? <a routerLink="/home/signin">Sign in!</a></h4>
