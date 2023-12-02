@@ -1,5 +1,5 @@
 <form (ngSubmit)="onSubmit()" #signupForm="ngForm" [formGroup]="signUpForm">
-    <h1 class="h3 mb-3 fw-normal">Sign up!</h1>
+    <h1 class="h3 mb-3 fw-normal text-center">Sign up!</h1>
 
     <div class="form-floating mb-2">
         <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com" name="email"
@@ -46,4 +46,4 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!signupForm.form.valid">Go to your
         notes!</button>
 </form>
-<h4 class="mt-5">Already have an account? <a routerLink="/home/signin">Sign in!</a></h4>
+<h4 class="mt-5 text-center">Already have an account? <a routerLink="/home/signin">Sign in!</a></h4>
