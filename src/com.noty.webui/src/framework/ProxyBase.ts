@@ -27,7 +27,7 @@ export class ProxyBase {
         const matches = filenameRegex.exec(contentDispositionHeader);
         let filename = '';
         if (matches != null && matches[1]) {
-          filename = matches[1].replace(/['"]/g, '');
+            filename = matches[1].replace(/['"]/g, '');
         }
         return filename;
     }
@@ -58,7 +58,7 @@ export class ProxyBase {
                 link.download = filename;
                 link.click();
                 URL.revokeObjectURL(downloadUrl);
-            
+
                 resolve();
             } catch (error) {
                 console.error('Download failed', error); // TODO
@@ -91,10 +91,10 @@ export class ProxyBase {
             catchError(error => this.handleError(error))
         ));
 
-        return <PutResult<R>> {
+        return <PutResult<R>>{
             location: result.headers.get('Location'),
             data: result.body
-        }; 
+        };
     }
 
     protected async postAsync<R>(
@@ -102,14 +102,22 @@ export class ProxyBase {
         body: any,
         args: { [key: string]: string }
     ): Promise<R> {
-        const params = new HttpParams({ fromObject: args });
-        const url = this.getEndpointUrl(endpoint);
+        return new Promise((resolve, reject) => {
+            const params = new HttpParams({ fromObject: args });
+            const url = this.getEndpointUrl(endpoint);
 
-        const result = await firstValueFrom(this.http.put(url, body, { params, observe: 'response' }).pipe(
-            catchError(error => this.handleError(error))
-        ));
+            firstValueFrom(this.http.post(url, body, { params, observe: 'response' }).pipe(
+                catchError(error => {
+                    error = new Error(error.error.message);
+                    reject(error);
 
-        return <R>result.body; 
+                    return throwError(() => error);
+                })))
+                .then(response => {
+                    resolve(<R>response.body);
+                })
+                .catch(error => reject(error));
+        });
     }
 
     private handleError(

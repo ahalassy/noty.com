@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserProxyService } from 'src/app/services/user-proxy.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,9 +9,11 @@ import { NgIf, NgFor } from '@angular/common';
 })
 export class SignupComponent implements OnInit {
 
-  submitted: boolean = false;
+  errorMessage: string | null = null;
 
   signUpForm!: FormGroup;
+
+  submitting = false;
 
   model = {
     email: null,
@@ -19,6 +21,12 @@ export class SignupComponent implements OnInit {
     isTermsAndConditionsAccepted: false,
     isPrivacyPolicyAccepted: false
   };
+
+  public constructor(
+    private userProxy: UserProxyService
+  ) {
+
+  }
 
   public get email() {
     return this.signUpForm.get('email');
@@ -64,9 +72,27 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  public onSubmit(): void {
-    this.submitted = true;
-    console.log(this.model);
-  }
+  public async onSubmit(): Promise<void> {
+    if (this.signUpForm.invalid)
+      return;
 
+    this.errorMessage = null;
+    try {
+      this.submitting = true;
+      let response = await this.userProxy.signup({
+        email: this.email?.value,
+        password: this.password?.value
+      });
+
+      console.log(response);
+
+    } catch (e) {
+      console.error(e);
+      this.errorMessage = (<Error>e).message;
+
+    } finally {
+      this.submitting = true;
+
+    }
+  }
 }

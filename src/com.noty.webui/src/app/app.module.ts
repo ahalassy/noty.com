@@ -8,6 +8,7 @@ import { UserProxyService } from './services/user-proxy.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './ui/pages/home/signup/signup.component';
 import { NgIf, NgFor } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgIf, NgFor } from '@angular/common';
     AppRoutingModule,
     ReactiveFormsModule, 
     NgIf,
-    NgFor
+    NgFor,
+    HttpClientModule
   ],
   providers: [
     UserProxyService
