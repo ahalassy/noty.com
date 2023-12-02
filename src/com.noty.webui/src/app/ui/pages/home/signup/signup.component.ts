@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserProxyService } from 'src/app/services/user-proxy.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class SignupComponent implements OnInit {
   };
 
   public constructor(
-    private userProxy: UserProxyService
+    private userProxy: UserProxyService,
+    private router: Router
   ) {
 
   }
@@ -84,7 +86,7 @@ export class SignupComponent implements OnInit {
         password: this.password?.value
       });
 
-      console.log(response);
+      this.router.navigate(['/home/thanks'])
 
     } catch (e) {
       console.error(e);

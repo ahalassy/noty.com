@@ -6,6 +6,7 @@ import { LandingComponent } from '../ui/pages/home/landing/landing.component';
 import { SignupComponent } from '../ui/pages/home/signup/signup.component';
 import { NotyappComponent } from '../ui/pages/app/notyapp.component';
 import { DashboardComponent } from '../ui/pages/app/dashboard/dashboard.component';
+import { ThanksComponent } from '../ui/pages/home/thanks/thanks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/landing', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
     children: [
       { path: 'landing', component: LandingComponent },
       { path: 'signin', component: SigninComponent },
-      { path: 'signup', component: SignupComponent }
+      { path: 'signup', component: SignupComponent },
+      { path: 'thanks', component: ThanksComponent }
     ]
   },
   {
