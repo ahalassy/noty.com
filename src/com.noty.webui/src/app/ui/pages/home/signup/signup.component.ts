@@ -5,8 +5,7 @@ import { UserProxyService } from 'src/app/services/user-proxy.service';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css',
+  templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
 
