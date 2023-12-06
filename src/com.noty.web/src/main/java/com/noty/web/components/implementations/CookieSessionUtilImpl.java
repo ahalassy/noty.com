@@ -26,6 +26,9 @@ public class CookieSessionUtilImpl implements CookieSessionUtil {
     @Value("${noty.security.cookie_ttl}")
     private String cookieTtlText;
 
+    @Value("${noty.app.domain}")
+    private String appDomain;
+
     private int getCookieTtl() {
         return Integer.parseInt(cookieTtlText);
     }
@@ -38,7 +41,9 @@ public class CookieSessionUtilImpl implements CookieSessionUtil {
         String jwt = jwtUtil.encode(principal);
 
         Cookie cookie = new Cookie(cookieName, jwt);
+        cookie.setDomain(appDomain);
         cookie.setMaxAge(getCookieTtl());
+        cookie.setPath("/");
         response.addCookie(cookie);
     }
 

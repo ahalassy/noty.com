@@ -7,6 +7,7 @@ import { SignupComponent } from '../ui/pages/home/signup/signup.component';
 import { NotyappComponent } from '../ui/pages/app/notyapp.component';
 import { DashboardComponent } from '../ui/pages/app/dashboard/dashboard.component';
 import { ThanksComponent } from '../ui/pages/home/thanks/thanks.component';
+import { canActivateRoute as canActivateDashboardRoute } from '../services/impersonation.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/landing', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: "app",
+    canActivate: [canActivateDashboardRoute],
     component: NotyappComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent }

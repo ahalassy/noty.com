@@ -10,25 +10,30 @@ import { SignupComponent } from './ui/pages/home/signup/signup.component';
 import { NgIf, NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './ui/pages/home/signin/signin.component';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { ImpersonationService } from './services/impersonation.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SigninComponent,
     SignupComponent,
-    SigninComponent
   ],
   imports: [
-    BrowserModule,
-    NgbModule,
-    FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule, 
-    NgIf,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
     NgFor,
-    HttpClientModule
+    NgIf,
+    NgbModule,
+    ReactiveFormsModule, 
   ],
   providers: [
-    UserProxyService
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    ImpersonationService,
+    JwtHelperService,
+    UserProxyService,
   ],
   bootstrap: [AppComponent]
 })
