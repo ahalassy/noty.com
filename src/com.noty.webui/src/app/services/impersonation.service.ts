@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as CookieUtil from 'src/framework/CookieUtil';
@@ -24,5 +24,13 @@ export class ImpersonationService {
 
 export const canActivateRoute: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    return inject(ImpersonationService).isAuthenticated()
+    const router = inject(Router);    
+    const hasPermission = inject(ImpersonationService).isAuthenticated()
+
+    if (!hasPermission) {
+      router.navigate(["/home/signin"]);
+      return false;
+    }
+
+    return true;
   };
