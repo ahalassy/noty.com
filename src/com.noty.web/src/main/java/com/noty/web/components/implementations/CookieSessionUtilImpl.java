@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -34,6 +35,15 @@ public class CookieSessionUtilImpl implements CookieSessionUtil {
     }
 
     @Override
+    public void removeSessionCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie(cookieName, "");
+        cookie.setDomain(appDomain);
+        cookie.setMaxAge(-1);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
+
+    @Override
     public void setSessionCookie(
             HttpServletResponse response,
             Principal principal
@@ -53,11 +63,15 @@ public class CookieSessionUtilImpl implements CookieSessionUtil {
         if (cookies == null || cookies.length == 0)
             return null;
 
-        return Arrays.stream(cookies)
-                .filter(c -> Objects.equals(c.getName(), cookieName))
-                .findFirst()
-                .map(value -> jwtUtil.decode(value.getValue()))
-                .orElse(null);
+        try {
+            return Arrays.stream(cookies)
+                    .filter(c -> Objects.equals(c.getName(), cookieName) && StringUtils.hasText(c.getValue()))
+                    .findFirst()
+                    .map(value -> jwtUtil.decode(value.getValue()))
+                    .orElse(null);
+        } catch (Exception e) {
+            return null;
+        }
 
     }
 }

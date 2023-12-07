@@ -9,6 +9,7 @@ import com.noty.web.services.SessionProvider;
 import com.noty.web.services.security.Credentials;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,6 +42,14 @@ public class AuthenticationApiController {
             return jwtUtil.encode(principal);
 
         }
+    }
+
+    @PostMapping("/release")
+    public ResponseEntity<?> Authenticate(
+            HttpServletResponse response
+    ) {
+        cookieSessionUtil.removeSessionCookie(response);
+        return ResponseEntity.ok().build();
     }
 
 }

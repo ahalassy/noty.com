@@ -19,3 +19,15 @@ export function getCookie(name: string): string | false {
         ? result.substring(name.length)
         : false;
 }
+
+export function removeCookie(
+    name: string,
+    path?: string,
+    domain?: string
+): void {
+    document.cookie = encodeURIComponent(name) +
+        "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" +
+        (domain ? "; domain=" + domain : "") +
+        (path ? "; path=" + path : "");
+
+}

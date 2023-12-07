@@ -23,4 +23,9 @@ export class UserProxyService extends ProxyBase {
     const form = formUtil.objectToForm(request);
     return this.postAsync('auth', form, { cookie: 'yes' });
   }
+
+  public signOut(): Promise<void> {
+    return this.postAsync('release', {}, {});
+  }
 }
+

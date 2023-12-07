@@ -12,6 +12,8 @@ import java.util.Map;
 @Component
 public interface CookieSessionUtil {
 
+    void removeSessionCookie(HttpServletResponse response);
+
     void setSessionCookie(HttpServletResponse response, Principal principal);
 
     Claims getSessionCookie(HttpServletRequest request);

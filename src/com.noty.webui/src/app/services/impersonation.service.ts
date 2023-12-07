@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } fr
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as CookieUtil from 'src/framework/CookieUtil';
+import { UserProxyService } from './user-proxy.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import * as CookieUtil from 'src/framework/CookieUtil';
 export class ImpersonationService {
 
   constructor(
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private proxy: UserProxyService
   ) { }
 
   public isAuthenticated(): boolean {
@@ -20,11 +22,15 @@ export class ImpersonationService {
       : false;
 
   }
+
+  public release(): Promise<void> {
+    return this.proxy.signOut();
+  }
 }
 
 export const canActivateRoute: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    const router = inject(Router);    
+    const router = inject(Router);
     const hasPermission = inject(ImpersonationService).isAuthenticated()
 
     if (!hasPermission) {
