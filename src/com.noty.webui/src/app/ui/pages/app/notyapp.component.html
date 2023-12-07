@@ -1,0 +1,31 @@
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <h3 class="float-md-start mb-0">Noty</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" routerLink="landing" routerLinkActive="active" href="#">My Notes</a>
+          <a class="nav-link" href="#">Shared with Me</a>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="onSignOutClick()">Sign out</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+  
+    <main class="px-3">
+      <router-outlet></router-outlet>
+    </main>
+  
+    <footer class="mt-auto text-white-50">
+      <p><a href="/doc/termsconditions" class="text-white">Terms & Conditions</a>&nbsp;&middot;&nbsp;<a
+          href="/doc/privacy" class="text-white">Privacy Policy</a></p>
+    </footer>
+  </div>

@@ -1,7 +1,10 @@
 package com.noty.web.configuration;
 
+import com.noty.web.components.CookieSessionUtil;
 import com.noty.web.components.JwtUtil;
-import com.noty.web.middleware.AuthenticationFilter;
+import com.noty.web.middleware.CookieAuthenticationFilter;
+import com.noty.web.middleware.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class NotySecurityConfiguration {
 
     private static final String[] POST_WHITE_LIST = new String[]{
@@ -21,21 +25,23 @@ public class NotySecurityConfiguration {
     };
     private final JwtUtil jwtUtil;
 
-    public NotySecurityConfiguration(
-            JwtUtil jwtUtil
-    ) {
-        this.jwtUtil = jwtUtil;
+    private final CookieSessionUtil cookieSessionUtil;
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationTokenFilterBean() throws Exception {
+        return new JwtAuthenticationFilter(jwtUtil);
     }
 
     @Bean
-    public AuthenticationFilter authenticationTokenFilterBean() throws Exception {
-        return new AuthenticationFilter(jwtUtil);
+    public CookieAuthenticationFilter cookieAuthenticationTokenFilterBean() throws Exception {
+        return new CookieAuthenticationFilter(cookieSessionUtil);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(cookieAuthenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, POST_WHITE_LIST)
                         .permitAll()

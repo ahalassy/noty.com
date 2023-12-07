@@ -1,0 +1,14 @@
+:host {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  

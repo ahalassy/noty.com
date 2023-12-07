@@ -1,15 +1,30 @@
-<form>
-    <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+<form (ngSubmit)="onSubmit()" #signinForm="ngForm" [formGroup]="signInForm">
+    <fieldset ng-disabled="submitting">
+        <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+        <div class="alert alert-danger mb-5" role="alert" *ngIf="!!errorMessage">
+            {{ errorMessage }}
+        </div>
+        <div class="form-floating mb-2">
+            <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com" name="email"
+                formControlName="email" [ngClass]="{ 'is-invalid': isInvalid('email') }">
+            <label for="signInEmail">Email address</label>
+            <div *ngIf="isInvalid('email')" class="invalid-feedback" for="signInEmail">
+                <span *ngIf="email?.errors?.['required']">We are identifing you with your e-mail address.</span>
+                <span *ngIf="email?.errors?.['email']">Enter a valid e-mail address.</span>
+            </div>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
+                formControlName="password" name="password" [ngClass]="{ 'is-invalid': isInvalid('password') }">
+            <label for="signUpPassword">Password</label>
+            <div *ngIf="isInvalid('password')" class="invalid-feedback" for="signUpPassword">
+                <span *ngIf="password?.errors?.['required']">Enter your password for identification.</span>
+            </div>
+        </div>
 
-    <div class="form-floating mb-2">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating mb-2">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-    </div>
-
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+            Sign in
+        </button>
+    </fieldset>
 </form>
 <h4 class="mt-5">Don't have an account? <a routerLink="/home/signup">Sign up!</a></h4>
