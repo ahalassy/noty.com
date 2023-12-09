@@ -51,5 +51,11 @@ public abstract class AuthenticationFilterBase extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
+    /**
+     * Retrieves the claims from the given request. This method shall not throw any exceptions, just return null, if the
+     * operation was unsuccessful.
+     * @param request The request from the claims must be fetched.
+     * @return The fetched claims when fetching was successful, null, otherwise.
+     */
     protected abstract Claims fetchClaims(HttpServletRequest request);
 }

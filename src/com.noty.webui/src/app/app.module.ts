@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './ui/pages/home/signin/signin.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { ImpersonationService } from './services/impersonation.service';
+import { NewListControlComponent } from './ui/controls/new-list-control/new-list-control.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ImpersonationService } from './services/impersonation.service';
     NgFor,
     NgIf,
     NgbModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

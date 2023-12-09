@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { ImpersonationService } from 'src/app/services/impersonation.service';
+import { NewListControlComponent } from '../../controls/new-list-control/new-list-control.component';
 
 @Component({
   selector: 'app-notyapp',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NewListControlComponent],
   templateUrl: './notyapp.component.html',
   styleUrl: './notyapp.component.css'
 })
