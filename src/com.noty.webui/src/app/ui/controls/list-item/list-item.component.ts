@@ -13,14 +13,18 @@ export class ListItemComponent {
 
   public type: NotyEntryType = NotyEntryType.checkItem;
   public text: string = '';
+  public get isCheck(): boolean {
+    return this.type == NotyEntryType.checkItem;
+  }
 
-  public constructor(
-    public t: LocalizationService
-  ) { }
 
   public get typeDescription(): string {
     return this.t.translateEntryType(this.type);
   }
+
+  public constructor(
+    public t: LocalizationService
+  ) { }
 
   public onSelectType(type: NotyEntryType | string): void {
     this.type = <NotyEntryType>type;

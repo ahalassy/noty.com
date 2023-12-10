@@ -11,7 +11,9 @@
 @import 'variables';
 
 .input-group {
-    .btn {
+
+    .btn,
+    .input-group-text {
         height: $form-floating-height;
         line-height: $form-floating-line-height;
     }

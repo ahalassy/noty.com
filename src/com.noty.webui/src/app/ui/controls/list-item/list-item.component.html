@@ -1,11 +1,13 @@
 <div class="input-group mb-3">
+    <div class="input-group-text" *ngIf="isCheck">
+        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Done?">
+    </div>
     <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="text" placeholder="text" name="text"
-            formControlName="text">
+        <input type="text" class="form-control" id="text" placeholder="text" name="text" formControlName="text">
         <label for="text">Item</label>
     </div>
-    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">{{ typeDescription }}</button>
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{
+        typeDescription }}</button>
     <ul class="dropdown-menu dropdown-menu-end">
         <li><a class="dropdown-item" (click)="onSelectType('CHECK')">{{ t.translateEntryType('CHECK') }}</a></li>
         <li><a class="dropdown-item" (click)="onSelectType('TEXT')">{{ t.translateEntryType('TEXT') }}</a></li>
