@@ -1,0 +1,18 @@
+/******************************************************************************
+ *
+ *   Copyright Adam Halassy, Budapest, HUN.
+ *   This is an unpublished work. All rights reserved.
+ *
+ * ---------------------------------------------------------------------------
+ *   This source is part of the Noty project
+ * 
+ *****************************************************************************/
+
+@import 'variables';
+
+.input-group {
+    .btn {
+        height: $form-floating-height;
+        line-height: $form-floating-line-height;
+    }
+}

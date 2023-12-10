@@ -1,3 +1,13 @@
+/******************************************************************************
+ *
+ *   Copyright Adam Halassy, Budapest, HUN.
+ *   This is an unpublished work. All rights reserved.
+ *
+ * ---------------------------------------------------------------------------
+ *   This source is part of the Noty project
+ * 
+ *****************************************************************************/
+
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './ui/pages/home/signin/signin.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { ImpersonationService } from './services/impersonation.service';
-import { NewListControlComponent } from './ui/controls/new-list-control/new-list-control.component';
 
 @NgModule({
   declarations: [
